@@ -1,0 +1,29 @@
+# Maven
+target/
+*.class
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+
+# Claude Code / agents
+.claude/
+CLAUDE.md
+openspec/
+
+# OS
+.DS_Store
+
+# Logs
+*.log
+
+# The global gitignore has `out/` (IDE output dir). Our hexagonal architecture has
+# legitimate `adapter/out` and `port/out` source packages — re-include them.
+!**/adapter/out/
+!**/adapter/out/**
+!**/port/out/
+!**/port/out/**
