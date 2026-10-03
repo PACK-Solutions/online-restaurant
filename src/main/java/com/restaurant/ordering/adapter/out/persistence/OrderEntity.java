@@ -21,7 +21,10 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "orders")
-class OrderEntity {
+public class OrderEntity {
+
+    @Column
+    private Double discountedTotal;
 
     @Id
     private UUID id;
@@ -83,7 +86,23 @@ class OrderEntity {
         this.paymentTransactionRef = paymentTransactionRef;
     }
 
-    UUID getId() {
+    public double computeTotalDouble() {
+        double t = 0;
+        for (OrderLineEntity l : lines) {
+            t = t + (l.getUnitPrice().doubleValue() * l.getQuantity());
+        }
+        return t;
+    }
+
+    public Double getDiscountedTotal() {
+        return discountedTotal;
+    }
+
+    public void setDiscountedTotal(Double discountedTotal) {
+        this.discountedTotal = discountedTotal;
+    }
+
+    public UUID getId() {
         return id;
     }
 
@@ -99,11 +118,11 @@ class OrderEntity {
         return lines;
     }
 
-    String getContactName() {
+    public String getContactName() {
         return contactName;
     }
 
-    String getContactPhone() {
+    public String getContactPhone() {
         return contactPhone;
     }
 
